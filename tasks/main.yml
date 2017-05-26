@@ -20,8 +20,8 @@
 
 
 - name: install libselinux-python binary for Ansible to work
-  yum: name=libselinux-python state=present
-  when: ansible_pkg_mgr == "yum"
+  package: name=libselinux-python state=present
+  when: ansible_pkg_mgr in ("yum", "dnf")
 
 - name: copy scripts to server
   copy: src="../files/check-java-version.sh"  dest="{{ java_download_path }}/"  mode="a+x"
